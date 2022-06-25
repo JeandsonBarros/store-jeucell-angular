@@ -1,5 +1,5 @@
 import { catchError, of } from 'rxjs';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators, UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from '../../shared/service/users.service';
 import { Component, OnInit } from '@angular/core';
@@ -19,13 +19,13 @@ export class ChangePasswordComponent implements OnInit {
   sendCodeCompleted = false;
   sendNewPasswordCompleted = false;
 
-  emailControl = new FormControl('', Validators.required);
+  emailControl = new UntypedFormControl('', Validators.required);
 
-  codeControl = new FormControl('', Validators.required);
+  codeControl = new UntypedFormControl('', Validators.required);
 
-  constructor(private serviceUser: UsersService, private router: Router, private fb: FormBuilder) { }
+  constructor(private serviceUser: UsersService, private router: Router, private fb: UntypedFormBuilder) { }
 
-  changePassword!: FormGroup;
+  changePassword!: UntypedFormGroup;
 
 
   ngOnInit(): void {

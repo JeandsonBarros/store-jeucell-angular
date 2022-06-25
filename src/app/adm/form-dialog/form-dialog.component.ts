@@ -2,7 +2,7 @@ import { Product } from './../../shared/model/product.model';
 import { ProductService } from './../../shared/service/product.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 interface Category {
@@ -23,11 +23,11 @@ export class FormDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<FormDialogComponent>,
     private service: ProductService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: Product,
   ) { }
 
-  productForm: FormGroup = this.fb.group({});
+  productForm: UntypedFormGroup = this.fb.group({});
 
   categotys: Category[] = [
     { value: "Smartphones", viewValue: "Smartphones" },

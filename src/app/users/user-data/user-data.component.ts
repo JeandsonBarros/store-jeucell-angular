@@ -1,6 +1,6 @@
 import { UserShopping } from './../../shared/model/user.model';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/shared/service/users.service';
 
 @Component({
@@ -25,9 +25,9 @@ export class UserDataComponent implements OnInit {
     password: "string",
   }
 
-  constructor(private userService: UsersService, private fb: FormBuilder) { }
+  constructor(private userService: UsersService, private fb: UntypedFormBuilder) { }
 
-  userForm: FormGroup = this.fb.group({
+  userForm: UntypedFormGroup = this.fb.group({
     name: [null, [Validators.required]],
     email: [null, [Validators.required]],
     birthDate: [null, [Validators.required]],
@@ -35,7 +35,7 @@ export class UserDataComponent implements OnInit {
     password: [null, [Validators.required]]
   });
 
-  changePassword!: FormGroup; 
+  changePassword!: UntypedFormGroup; 
 
 
   ngOnInit(): void {
@@ -56,7 +56,7 @@ export class UserDataComponent implements OnInit {
 
   }
 
-  validate(form: FormGroup) {
+  validate(form: UntypedFormGroup) {
     let resultErros: any = [];
 
     Object.keys(form.controls).forEach(key => {

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { UsersService } from './../../shared/service/users.service';
 import { Component, OnInit } from '@angular/core';
 import { loga } from 'src/app/shared/model/loga';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -14,9 +14,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   hide = true;
  
-  login!: FormGroup;
+  login!: UntypedFormGroup;
   
-  constructor(private serviceUser: UsersService, private fb: FormBuilder, private router: Router) { }
+  constructor(private serviceUser: UsersService, private fb: UntypedFormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     

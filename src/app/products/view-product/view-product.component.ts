@@ -1,6 +1,6 @@
 import { Evaluation } from './../../shared/model/evaluation';
 import { Component, HostListener, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductOfCart } from 'src/app/shared/model/ProductOfCart.model';
@@ -64,7 +64,7 @@ export class ViewProductComponent implements OnInit {
 
   largerQuantity = false;
 
-  formQuantity: FormControl = new FormControl(6, Validators.required);
+  formQuantity: UntypedFormControl = new UntypedFormControl(6, Validators.required);
   starsArray: any;
 
 

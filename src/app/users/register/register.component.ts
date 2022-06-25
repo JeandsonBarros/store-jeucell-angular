@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { UsersService } from './../../shared/service/users.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -10,9 +10,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
   hide = true;
-  userForm!: FormGroup;
+  userForm!: UntypedFormGroup;
   
-  constructor(private userService: UsersService, private fb: FormBuilder, private route: Router) { }
+  constructor(private userService: UsersService, private fb: UntypedFormBuilder, private route: Router) { }
 
   ngOnInit(): void {
 

@@ -1,6 +1,6 @@
 import { ShoppingCartService } from './../../shared/service/shopping-cart.service';
 import { Router } from '@angular/router';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { UsersService } from './../../shared/service/users.service';
 import { Component, OnInit } from '@angular/core';
 import { OrderedService } from 'src/app/shared/service/ordered.service';
@@ -17,9 +17,9 @@ export class CartproductsComponent implements OnInit {
 
   quotas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   productsOfCart!: ProductOfCart[];
-  address!: FormGroup;
-  payment!: FormGroup;
-  cart!: FormGroup;
+  address!: UntypedFormGroup;
+  payment!: UntypedFormGroup;
+  cart!: UntypedFormGroup;
 
   checked = false;
 
@@ -43,13 +43,13 @@ export class CartproductsComponent implements OnInit {
     private userService: UsersService,
     private orderedService: OrderedService,
     private shoppingCartService: ShoppingCartService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private router: Router
   ) { }
 
   largerQuantity = false;
 
-  formQuantity = new FormControl(1, Validators.required)
+  formQuantity = new UntypedFormControl(1, Validators.required)
 
   ngOnInit(): void {
 
