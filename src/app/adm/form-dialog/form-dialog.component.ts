@@ -38,15 +38,21 @@ export class FormDialogComponent implements OnInit {
 
   status = ["Disponível", "Indisponível"];
 
-  progress: Observable<number> =  this.service.progress;
+  progressStatus: Observable<number> =  this.service.progress;
+  asProgress = false;
+
 
   ngOnInit(): void {
 
-    this.progress.subscribe(data => {
+    this.progressStatus.subscribe(data => {
+      this.asProgress = true;
+      
       if(data == 100){
         this.close();
         this.productForm.reset();
+        this.asProgress = false;
       }
+
     })
 
     this.titleOption = this.data.id == null ? "Adicionar produto" : "Editar produto";

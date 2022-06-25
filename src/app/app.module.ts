@@ -28,8 +28,6 @@ import { NavComponent } from './template/nav/nav.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { environment } from 'src/environments/environment';
-
 
 
 @NgModule({
@@ -62,22 +60,21 @@ import { environment } from 'src/environments/environment';
     MatMenuModule,
     MatDividerModule,
     AngularFireStorageModule,
+
     AngularFireModule.initializeApp({
-      apiKey: "AIzaSyCfeuAMc8DzUfMgJRMe5bX98WzsN4SZ5Rw",
-      authDomain: "loja-c7841.firebaseapp.com",
-      databaseURL: "https://loja-c7841-default-rtdb.firebaseio.com",
-      projectId: "loja-c7841",
-      storageBucket: "loja-c7841.appspot.com",
-      messagingSenderId: "835922274315",
-      appId: "1:835922274315:web:f5da7d37157505a0ab3f0e",
-      measurementId: "G-7Y8JNTH9XD"
+      apiKey: '<your-key>',
+      authDomain: '<your-project-authdomain>',
+      databaseURL: '<your-database-URL>',
+      projectId: '<your-project-id>',
+      storageBucket: '<your-storage-bucket>',
+      messagingSenderId: '<your-messaging-sender-id>',
+      appId: '<your-app-id>',
+      measurementId: '<your-measurement-id>'
     }),
+
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
     MatAutocompleteModule,
-   
-   
-
 
   ],
  
