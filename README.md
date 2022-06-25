@@ -6,6 +6,8 @@ Site JeuCell: https://store-jeucell.herokuapp.com/products
 
 Back-end (API): https://github.com/JeandsonBarros/api-store-jeucell-spring-boot
 
+![Figure 1](./Captura.png)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.4.
 
 ## Execution
@@ -15,7 +17,7 @@ Installation of dependencies: `npm install`
 
 This project uses Firebase to store product images, so I need to pass Firebase settings to app.module.ts as shown in the following image:
 
-![Figure 1 -Screenshot of AngularFireModule.initializeApp settings.](./AngularFireModule.initializeApp.png)
+![Figure 2 -Screenshot of AngularFireModule.initializeApp settings.](./AngularFireModule.initializeApp.png)
 
 ## Development server
 
