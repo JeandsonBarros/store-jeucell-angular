@@ -1,0 +1,29 @@
+.container{
+    padding: 19px;
+    min-height: 100%;
+
+    .title{
+        font-size: 3rem;
+        font-weight: 300;
+        line-height: 1.2;
+    }
+   
+}
+
+mat-expansion-panel-header{
+    margin: 10px;
+}
+
+span {
+    max-width: 190px; /* Tamanho */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+  }
+h2{
+    font-weight: 300;
+}
+
+button{
+    margin: 0 10px 0 10px;
+}

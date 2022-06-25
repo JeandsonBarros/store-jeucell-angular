@@ -1,0 +1,101 @@
+<mat-progress-bar *ngIf="!progressBar" mode="indeterminate"></mat-progress-bar>
+
+<div class="container">
+  <mat-card class="matCardTeste mat-elevation-z8">
+    <div class="divImg">
+      <img mat-card-image [class.available]="product.status=='Indisponível'"  [src]="product.imgUrl" />
+    </div>
+
+    <div>
+      <mat-divider *ngIf="size > 600" vertical style="height: 500px; margin-left: 30px; margin-right: 10px">
+      </mat-divider>
+    </div>
+
+    <div style="width: 300px">
+      <span *ngIf="product.status =='Indisponível'" style="color: brown">Indisponível</span>
+      <span *ngIf="product.status =='Disponível'">Disponível: {{ product.quantity }}</span>
+
+      <h1>{{ product.name }}</h1>
+
+      <button mat-button (click)="openDialog()">
+        <mat-icon color="accent" *ngFor="let starArray of starsArray">{{starArray}}</mat-icon>
+      </button>
+      
+      {{evaluationQuantity}} opiniões <br>
+
+      <p></p>
+
+      <p class="price">{{ product.price | currency: 'BRL' }}</p>
+
+      <mat-form-field appearance="fill" *ngIf="product.status != 'Indisponível'">
+        <mat-label>Quantidade: </mat-label>
+        <mat-select name="quantity" [(ngModel)]="quantity">
+          <mat-option (click)="largerQuantity = false"
+            *ngFor="let option of options" [value]="option.value">
+            {{ option.viewValue }}
+          </mat-option>
+          <mat-option (click)="largerQuantity = true">
+            Quantidade maior que 5?
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" *ngIf="product.status == 'Indisponível'">
+        <mat-label>Quantidade: </mat-label>
+        <mat-select disabled>
+          <mat-option> </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div>
+        <mat-form-field color="accent" appearance="outline" *ngIf="largerQuantity">
+          <mat-label>Quantidade:</mat-label>
+          <input matInput type="number" [formControl]="formQuantity" />
+          <mat-hint>Disponível: {{ product.quantity }}</mat-hint>
+        </mat-form-field>
+      </div>
+
+      
+      <div mat-dialog-actions>
+        <button [disabled]="product.status == 'Indisponível' ? true : null" class="comprar" (click)="buy()" mat-button
+          color="primary">
+          <mat-icon>shopping_cart</mat-icon>Comprar
+        </button>
+
+        <button [disabled]="product.status == 'Indisponível' ? true : null" (click)="addShoppingCart()" mat-button color="primary">
+          <mat-icon>{{ cartIcon }}</mat-icon>
+        </button>
+
+        <button mat-button (click)="favorite(product)">
+          <mat-icon class="red">{{ favoriteIcon }}</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-card>
+
+  <p></p>
+
+  <mat-card class="mat-elevation-z8">
+    <h1>Descirção</h1>
+    <p></p>
+    <span style="font-size: 16px">{{ product.description }}</span>
+  </mat-card>
+
+  <p></p>
+
+  <mat-card class="mat-elevation-z8">
+    <span>
+      <h1 class="subtitle">Produtos semelhantes</h1>
+      <a [routerLink]="['/products/category/', category]" [style.color]="'blue'">
+        Mostrar mais
+      </a>
+    </span>
+    <div class="categorys">
+      <div *ngFor="let product of products">
+        <a (click)="backToTop()" [routerLink]="['/products/viewproduct/' + product.id]">
+          <app-product-card [product]="product"></app-product-card>
+        </a>
+      </div>
+    </div>
+  </mat-card>
+</div>

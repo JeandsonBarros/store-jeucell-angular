@@ -1,0 +1,62 @@
+
+<div class="container">
+    <form [formGroup]="userForm">
+        <mat-card class="example-card" [class.mat-elevation-z8]="true">
+            <mat-icon color="primary" class="iconLogin">account_circle</mat-icon>
+            <div class="formDiv">
+
+                <p></p>
+                <span>Cadastro</span>
+                <mat-form-field>
+                    <mat-label>Nome</mat-label>
+                    <input matInput placeholder="Seu nome aqui" formControlName="name" name="name">
+                </mat-form-field>
+
+
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Seu email aqui" formControlName="email" name="email">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Data de nascimento</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="birthDate" name="birthDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+
+
+                <p></p>
+
+                <mat-form-field>
+                    <mat-label>CPF</mat-label>
+                    <input matInput placeholder="CPF:" type="number" formControlName="cpf" name="cpf">
+                </mat-form-field>
+
+                <p></p>
+
+
+                <p></p>
+                <mat-form-field>
+                    <mat-label>Senha</mat-label>
+                    <input matInput #message maxlength="16" [type]="hide ? 'password' : 'text'" formControlName="password" name="password">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon style="font-size: 25px;">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-hint align="start"><strong>A senha deve ter no minimo 8 caracteres</strong> </mat-hint>
+                    <mat-hint align="end">{{message.value.length}} /</mat-hint>
+                </mat-form-field>
+
+                <p></p>
+                <button mat-raised-button (click)="salvar()" color="primary">Cadastrar-se</button>
+                <hr>
+                <button [routerLink]="['/user/login']" mat-raised-button color="primary">Entrar</button>
+            </div>
+
+
+
+        </mat-card>
+    </form>
+</div>

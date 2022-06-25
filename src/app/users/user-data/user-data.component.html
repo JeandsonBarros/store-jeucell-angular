@@ -1,0 +1,117 @@
+<mat-progress-bar *ngIf="!progressBar" mode="indeterminate"></mat-progress-bar>
+<mat-card class="mat-elevation-z8">
+    <mat-card-title>Dados da conta</mat-card-title>
+</mat-card>
+
+
+<div class="container">
+
+<mat-expansion-panel  [expanded]="true">
+    <mat-expansion-panel-header >
+        <mat-panel-title>
+            Dados pessoais - <mat-icon>account_circle</mat-icon>
+        </mat-panel-title>
+        <mat-panel-description>
+            Veja e altere seus dados.
+
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form [formGroup]="userForm">
+        <fieldset>
+            <legend>Seus dados</legend>
+            <mat-form-field>
+                <mat-label>Nome</mat-label>
+                <input type="text" matInput placeholder="Seu nome aqui" name="name" formControlName="name">
+            </mat-form-field>
+
+
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput type="email" placeholder="Seu email aqui" name="email" [value]="user.email" disabled>
+            </mat-form-field>
+
+            <p></p>
+
+            <mat-form-field>
+                <mat-label>Data de nascimento</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="birthDate">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>CPF</mat-label>
+                <input matInput placeholder="CPF:" type="number" [value]="user.cpf" name="cpf" disabled>
+            </mat-form-field>
+
+            <p>Informe sua senha para salvar as edições</p>
+
+            <mat-form-field>
+
+                <mat-label>Senha</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" name="password" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon style="font-size: 25px;">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <p></p>
+
+            <button mat-raised-button (click)="salvar()" color="primary">Salvar</button>
+
+        </fieldset>
+    </form>
+
+</mat-expansion-panel>
+
+<mat-accordion>
+    <mat-expansion-panel  [expanded]="panelOpenState" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Senha - <mat-icon>password</mat-icon>
+            </mat-panel-title>
+                        
+            <mat-panel-description>Altere sua senha.</mat-panel-description>
+
+        </mat-expansion-panel-header>
+
+        <form [formGroup]="changePassword">
+
+            <fieldset>
+                <legend>Alterar senha</legend>
+
+                <mat-form-field>
+                    <mat-label>Senha antiga</mat-label>
+                    <input matInput [type]="hideOldPassword ? 'password' : 'text'" name="oldPassword"
+                        formControlName="oldPassword">
+                    <button mat-icon-button matSuffix (click)="hideOldPassword = !hideOldPassword"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideOldPassword">
+                        <mat-icon style="font-size: 25px;">{{hideOldPassword ? 'visibility_off' : 'visibility'}}
+                        </mat-icon>
+                    </button>
+                </mat-form-field>
+
+                <p></p>
+
+                <mat-form-field>
+                    <mat-label>Senha nova</mat-label>
+                    <input matInput [type]="hideNewPassword ? 'password' : 'text'" name="oldPassword"
+                        formControlName="newPassword">
+                    <button mat-icon-button matSuffix (click)="hideNewPassword = !hideNewPassword"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideNewPassword">
+                        <mat-icon style="font-size: 25px;">{{hideNewPassword ? 'visibility_off' : 'visibility'}}
+                        </mat-icon>
+                    </button>
+                </mat-form-field>
+
+                <p></p>
+
+                <button mat-raised-button (click)="changePasswordFunction()" color="primary">Salvar</button>
+            </fieldset>
+        </form>
+
+    </mat-expansion-panel>
+</mat-accordion>
+
+</div>

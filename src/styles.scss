@@ -1,1 +1,100 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/theming';
+@include mat-core();
+
+$gold-palette: (
+ 50: #ffcb74,
+ 
+ // ... continues to 900
+ contrast: (
+   50: rgba(black, 0.87),
+   100: rgba(black, 0.87),
+   200: rgba(black, 0.87),
+   300: white,
+   // ... continues to 900
+ )
+);
+
+
+$custom-app-primary: mat-palette($mat-grey, 900);
+$custom-app-accent: mat-palette($mat-amber, A400);
+$custom-app-warn: mat-palette($mat-red);
+
+$colorPrimary: #212121;
+
+$custom-theme: mat-light-theme($custom-app-primary, $custom-app-accent, $custom-app-warn);
+
+@include angular-material-theme($custom-theme); 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.red {
+    color: rgb(201, 63, 63);
+}
+.v-middle{
+    vertical-align: middle;
+}
+
+
+
+.footer{
+    
+
+    font-size: 0.9rem;
+    font-weight: 300;
+
+    justify-content: space-between;
+
+    margin-top: auto;
+
+    a {
+        margin: 10px;
+        color: white;
+        transition: 0.3s;
+    }
+
+    a:hover{
+        filter: drop-shadow(1px 1px 2px #797979);
+    }
+    
+    //position: fixed;
+    //bottom: 0; 
+
+        
+}
+.available{
+    filter: opacity(0.4) drop-shadow(0 0 0 rgb(247, 240, 240));
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  
+.white-snackbar{
+      background-color: white;
+      color: black;
+}
+
+
+
+::-webkit-scrollbar-track {
+    background-color: white;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    //size horizontal scrollbar
+    
+    height: 10px;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: $colorPrimary;
+    
+}
+
+
+
+

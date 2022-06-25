@@ -1,0 +1,34 @@
+<div style="padding: 10px;">
+
+    <button class="closed" mat-icon-button (click)="close()">
+        <mat-icon>closed</mat-icon>
+    </button>
+
+    <h1>Avaliações do {{product.name}}</h1>
+
+    <h1>Média de aprovação: {{average>0? average+' / 5.0' : "Ainda não há média"}} </h1>
+    <span>Percentual de aprovação: {{percentage>0? percentage.toFixed(1)+'%' : "Ainda não há percentual"}}</span>
+
+    <div class="data" *ngFor="let individualStar of individualStars; index as i;">
+        <div style="width: 100px;">{{i+1}} estrela{{i+1>=2? 's: ':': '}} {{individualStar}}</div>
+        <mat-progress-bar [value]="(individualStar / quantityOfStars)*100" color="accent" mode="determinate">
+        </mat-progress-bar>
+    </div>
+
+    <p></p>
+
+    <div *ngFor="let evaluation of starsOfProducts">
+        <div *ngIf="evaluation[0].comment != ''">
+            <hr>
+            <strong>{{evaluation[0].userName}}: </strong>
+            <br>
+            <span>
+                <mat-icon color="accent" *ngFor="let stars of evaluation[1]">{{stars}}</mat-icon>
+                {{evaluation.quantityOfStars}}
+            </span>
+            <br>
+            <p>{{evaluation[0].comment}}</p>
+        </div>
+
+    </div>
+</div>

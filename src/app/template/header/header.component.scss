@@ -1,0 +1,87 @@
+* {
+  font-weight: 100;
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: GreatVibes-Regular;
+  src: url("/assets/font/GreatVibes-Regular.ttf");
+}
+
+.title {
+  color: #ffff;
+  font-size: 30px;
+  font-family: "Sofia", sans-serif;
+  padding: 10px;
+}
+
+
+
+mat-icon {
+  color: #ffff;
+}
+
+
+
+.warapper {
+  width: 25rem;
+
+  ::placeholder {
+    color: rgba(204, 211, 252, 0.89);
+    font-size: 17px;
+
+  }
+
+  .autocomplete {
+    display: flex;
+  }
+
+
+  mat-icon:hover {
+    background-color: rgba(255, 255, 255, 0.185);
+    border-radius: 13px;
+    padding: 10%;
+
+  }
+
+}
+
+mat-toolbar-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  
+
+
+}
+
+.alert{
+  background-color: #F8D7DA;
+  color: #93205C;
+  font-size: 17px;
+  padding: 0 5px 0 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  mat-icon{
+    color: #93205C;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .warapper {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+  }
+
+  #auth {
+    visibility: hidden;
+    font-size: 0;
+  }
+
+  
+
+}

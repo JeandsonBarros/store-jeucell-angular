@@ -1,0 +1,74 @@
+.home{
+    padding: 19px;
+    min-height: 100%;
+
+    .title{
+        font-size: 3rem;
+        font-weight: 300;
+        line-height: 1.2;
+    }
+
+    .cardTitle{
+      box-shadow:  7px 7px 14px #bec6c8,
+      -7px -7px 14px #fcffff;
+      border-radius: 15px;
+    }
+  
+   
+}
+
+a{
+    text-decoration:none;
+}
+
+.fab{
+    position: fixed;
+    bottom: 75px;
+    right: 20px;
+
+    span{
+        background-color: #6200EE;
+        color: white;
+        padding: 10px;
+        padding-right: 20px;
+        border-radius: 20px;
+    }
+  }
+  
+
+  .categorys{
+    border-radius: 15px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  
+    padding: 10px 0px 20px 0px;
+    margin: 10px 0px 20px 0px;
+
+    div{
+      float:right;
+      width: 205px;
+      margin: 20px;
+    }
+
+    p {
+        max-width: 190px; /* Tamanho */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap
+      }
+
+      mat-card:hover{
+        box-shadow:  15px 15px 24px #bec6c8,
+             -15px -15px 24px #fcffff;
+      }
+      mat-card{
+        border-radius: 15px;
+        box-shadow:  7px 7px 14px #bec6c8,
+        -7px -7px 14px #fcffff;
+      }
+
+
+  }
+ 

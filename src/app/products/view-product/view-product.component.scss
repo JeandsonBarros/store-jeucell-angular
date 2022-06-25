@@ -1,0 +1,82 @@
+.container {
+  padding: 20px;
+  font-weight: 300;
+  width: 0 auto;
+  margin: 30px;
+  min-height: 100%;
+  background-color: rgba(0, 0, 0, 0.089);
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.divImg {
+  padding-top: 30px;
+  max-width: 400px;
+
+}
+
+.divCard {
+  margin: 2px 20px 2px 20px;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
+.price {
+  font-size: 30px;
+}
+
+.comprar {
+  background-color: #ffcc7488;
+}
+
+.matCardTeste {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 0 auto;
+}
+
+.categorys {
+  overflow-x: auto;
+
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+  grid-template-rows: auto;
+  justify-content: start;
+
+  padding: 10px 0px 20px 0px;
+  margin: 10px 0px 20px 0px;
+
+  div {
+    float: right;
+    width: 205px;
+    margin: 20px;
+  }
+
+  p {
+    max-width: 190px;
+    /* Tamanho */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  mat-card:hover {
+    box-shadow: 15px 15px 24px #bec6c8, -15px -15px 24px #fcffff;
+  }
+
+  mat-card {
+    border-radius: 15px;
+    box-shadow: 7px 7px 14px #bec6c8, -7px -7px 14px #fcffff;
+  }
+}
+
+mat-card {
+  border-radius: 15px;
+  box-shadow: 7px 7px 14px #bec6c8, -7px -7px 14px #fcffff;
+}

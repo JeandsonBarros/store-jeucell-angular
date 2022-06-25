@@ -1,0 +1,57 @@
+<mat-progress-bar mode="determinate" color="accent" *ngIf="progress | async" [value]="progress | async"></mat-progress-bar>
+<h1 mat-dialog-title>{{titleOption}}</h1>
+<div mat-dialog-content>
+  
+  <form [formGroup]="productForm">
+    <mat-form-field>
+      <mat-label>Nome do produto</mat-label>
+      <input matInput formControlName="name" name="name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Preço R$</mat-label>
+      <input matInput type="number" step=".01" formControlName="price" name="price">
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <mat-label>Categoria do produto</mat-label>
+      <mat-select name="category" formControlName="category">
+        <mat-option *ngFor="let category of categotys" [value]="category.value">
+          {{category.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Quantidade</mat-label>
+      <input matInput type="number" formControlName="quantity" name="quantity">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select name="status" formControlName="status">
+        <mat-option *ngFor="let statu of status" [value]="statu">
+          {{statu}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Descrição</mat-label>
+      <textarea matInput formControlName="description" name="description"></textarea>
+    </mat-form-field>
+
+  </form>
+
+  <mat-form-field>
+    <ngx-mat-file-input [(ngModel)]="file" accept=".png, .jpg, .jpeg"></ngx-mat-file-input>
+  </mat-form-field>
+
+  
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">Cancelar</button>
+  <button mat-button (click)="action()" cdkFocusInitial>Salvar</button>
+</div>

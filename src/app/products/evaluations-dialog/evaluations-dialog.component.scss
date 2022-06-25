@@ -1,0 +1,16 @@
+mat-progress-bar{
+    width: 15rem;
+}
+
+.data{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px 10px 20px 5px;
+}
+
+.closed{
+    margin-left: 95%; position: sticky;
+    top: 0;
+}

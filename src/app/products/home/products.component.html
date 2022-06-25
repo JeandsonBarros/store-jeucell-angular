@@ -1,0 +1,24 @@
+<mat-progress-bar *ngIf="!progressBar" mode="indeterminate"></mat-progress-bar>
+
+<div class="home">
+
+  <mat-card class="card">
+    <mat-card-title class="title">Bem vindo(a)!</mat-card-title>
+    <!--mat-card-title [style.color]=" size>1000 ? 'blue' : 'red'">{{size}}</mat-card-title-->
+  </mat-card>
+   
+  <div class="container">
+    <div *ngFor="let category of categorys">
+      <span class="subtitle"> {{category.split("-").join(" ")}} </span> <a [routerLink]="['/products/category/',category]"> Ver mais </a>
+      <mat-divider></mat-divider>
+      <div class="categorys">
+
+        <div *ngFor="let product of products[category]">
+          <a [routerLink]="['/products/viewproduct/' + product.id]">
+           <app-product-card [product]="product"></app-product-card>
+          </a>
+        </div>
+
+      </div>
+    </div>
+</div>

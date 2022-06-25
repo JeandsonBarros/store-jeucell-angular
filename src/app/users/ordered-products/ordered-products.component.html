@@ -1,0 +1,85 @@
+<mat-progress-bar *ngIf="!progressBar" mode="indeterminate"></mat-progress-bar>
+<div class="container">
+  <mat-card class="mat-elevation-z8">
+    <mat-card-title class="title">Seus pedidos</mat-card-title>
+    <mat-card-subtitle> {{ subTitle }} </mat-card-subtitle>
+  </mat-card>
+  <p></p>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let ordered of ordereds" class="mat-elevation-z8" (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false" [ngSwitch]="ordered.status">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span>
+            {{ ordered.products[0].product.name +'...'}}
+          </span>
+        </mat-panel-title>
+
+        <mat-panel-description>
+          Status: {{ ordered.status }}
+        </mat-panel-description>
+
+        <mat-panel-description>
+          Número do pedido: {{ ordered.id }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      Status: {{ ordered.status }}
+      <mat-progress-bar mode="determinate" [color]="
+          ordered.status == 'Produto indisponível' ||
+          ordered.status == 'Pagamento recusado'
+            ? 'warn'
+            : 'accent'
+        " [value]="orderedStatus(ordered.status)"></mat-progress-bar>
+
+      <p></p>
+
+      <strong>Produtos:</strong><br />
+      <span *ngFor="let product of ordered.products">
+        {{ product.product.name }} - Quantidade: {{ product.quantity }} <br />
+      </span>
+
+      <p></p>
+
+      <strong>Data de realização do pedido:</strong><br />
+      {{ ordered.date }}
+
+      <p></p>
+
+      <strong>Pagamento:</strong><br />
+      Valor: R$ {{ ordered.total | currency: "BRL" }} - Forma de pagamento:
+      Cartão - Dividido em: {{ ordered.quota }}x
+
+      <p></p>
+
+      <strong>Entrega:</strong><br />
+      Estado: {{ ordered.state }} - Cidade: {{ ordered.city }}
+      <br />
+      Rua: {{ ordered.street }} - Número da casa: {{ ordered.numberHouse }}
+      <br />
+      Bairro: {{ ordered.district }}
+      <br />
+      CEP: {{ ordered.cep }}
+      <br />
+      Destinatário: {{ ordered.remittee }}
+
+      <hr>
+
+      <div>
+        <mat-accordion *ngIf="ordered.status == 'Entregue'">
+          <div>
+            <h2>Dê a sua opinião sobre esses produtos: </h2>
+            <mat-hint>Não é obrigatório</mat-hint>
+          </div>
+
+          <div *ngFor="let productEvaluation of ordered.products">
+            <app-evaluations [product]="productEvaluation.product"></app-evaluations>
+          </div>
+
+        </mat-accordion>
+
+      </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

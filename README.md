@@ -1,6 +1,17 @@
-# Loja
+# Store JeuCell By Angular
+
+Online electronics store powered by Angular + Firebase.
+
+Site JeuCell: https://store-jeucell.herokuapp.com/products
+
+Back-end (API): https://github.com/JeandsonBarros/api-store-jeucell-spring-boot
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.4.
+
+## Execution
+
+This project uses Firebase to store product images, so I need to pass Firebase settings to app.module.ts as shown in the following image:
+
 
 ## Development server
 

@@ -1,0 +1,22 @@
+p {
+    max-width: 190px;
+    /* Tamanho */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.card {
+    border-radius: 15px;
+    box-shadow: 7px 7px 14px #bec6c8,
+        -7px -7px 14px #fcffff;
+}
+
+.card:hover {
+    box-shadow: 15px 15px 24px #bec6c8,
+        -15px -15px 24px #fcffff;
+}
+
+img {
+    object-fit: cover;
+}

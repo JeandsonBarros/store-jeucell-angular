@@ -1,0 +1,159 @@
+<mat-progress-bar *ngIf="!progressBar" mode="indeterminate"></mat-progress-bar>
+
+<mat-stepper linear #stepper>
+    <mat-step errorMessage="Name is required." [stepControl]="cart" [editable]="true">
+
+        <ng-template matStepLabel>Carrinho</ng-template>
+        <div *ngFor="let productOfCart of productsOfCart">
+
+            <form class="container">
+
+                <a [routerLink]="['/products/viewproduct/', productOfCart.product.id]">
+                    <div>
+                        <img mat-card-image style="float:left; vertical-align:middle;"
+                            [src]="productOfCart.product.imgUrl" alt="Photo of a Shiba Inu" width="60" height="60">
+                        <span> {{ productOfCart.product.name }}</span>
+                    </div>
+                </a>
+
+                <div>
+                    <span>Preço: {{ productOfCart.product.price | currency: 'BRL'}}</span>
+                </div>
+
+                <div>
+                    <mat-form-field color="accent" style="width: 80px;"  appearance="legacy">
+                        <mat-label >Quantidade:</mat-label>
+                        <input  matInput type="number" (keyup)="quantityProduct(productOfCart, $event)" [value]="productOfCart.quantity" >
+                    <mat-hint>Disponível: {{productOfCart.product.quantity}}</mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <button color="warn" style="height: 40px;" mat-raised-button (click)="shoppingCart(productOfCart)">
+                    Remover
+                    <mat-icon  matSuffix>
+                        delete
+                    </mat-icon>
+                </button>
+
+
+
+            </form>
+
+            <mat-divider></mat-divider>
+            <br>
+        </div>
+
+        <h2>Total: {{total | currency: 'BRL'}}</h2>
+
+        <button color="primary" mat-button matStepperNext>Comprar</button>
+    </mat-step>
+
+    <mat-step errorMessage="Address is required." [stepControl]="address" [editable]="true">
+        <ng-template matStepLabel>Endereço</ng-template>
+
+        <form [formGroup]="address">
+
+            <mat-form-field class="long" appearance="fill">
+                <mat-label>Nome do destinatário</mat-label>
+                <input type="text" placeholder="Nome" matInput formControlName="remittee">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Celular do destinatário</mat-label>
+                <input type="number" matInput placeholder="1234567890" formControlName="remitteeNumber">
+            </mat-form-field>
+
+            <p></p>
+
+            <mat-form-field appearance="fill">
+                <mat-label>CEP</mat-label>
+                <input type="number" matInput placeholder="12345678" (keyup)="getCep($event)" formControlName="cep">
+            </mat-form-field>
+
+            <mat-form-field appearance="legacy">
+                <mat-label>Estado</mat-label>
+                <input matInput type="text" placeholder="Estado" [value]="state" disabled>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="legacy">
+                <mat-label>Cidade</mat-label>
+                <input matInput type="text" placeholder="Cidade" [value]="city" disabled>
+            </mat-form-field>
+
+            <p></p>
+
+            <mat-form-field class="long" appearance="fill">
+                <mat-label>Bairro</mat-label>
+                <input type="text" matInput placeholder="Centro" formControlName="district">
+            </mat-form-field>
+
+            <p></p>
+
+            <mat-form-field class="long" appearance="fill">
+                <mat-label>Rua</mat-label>
+                <input type="text" matInput placeholder="Rua exemplo" formControlName="street">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Número da casa</mat-label>
+                <input type="number" matInput placeholder="123" formControlName="numberHouse" required>
+            </mat-form-field>
+
+        </form>
+
+        <button mat-button matStepperPrevious>Voltar</button>
+        <button color="primary" mat-button matStepperNext>Comprar</button>
+
+    </mat-step>
+
+    <mat-step [editable]="true" [stepControl]="payment">
+        <ng-template matStepLabel>Pagamento</ng-template>
+        <button color="primary" mat-button [style.visibility]="'hidden'">Pagar no boleto</button>
+
+        <form [formGroup]="payment">
+
+            <mat-form-field appearance="fill">
+                <mat-label>Parcelas</mat-label>
+                <mat-select formControlName="quota">
+                    <mat-option *ngFor="let quota of quotas" [value]="quota">
+                        {{quota}}x
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <p></p>
+
+            <mat-form-field class="long" appearance="fill">
+                <mat-label>Nome no cartão</mat-label>
+                <input type="text" matInput placeholder="Nome" formControlName="nameOnCard">
+            </mat-form-field>
+
+            <p></p>
+
+            <mat-form-field class="long" appearance="fill">
+                <mat-label>Número do Cartão</mat-label>
+                <input type="text" matInput placeholder="0000 0000 0000 0000" formControlName="cardNumber">
+            </mat-form-field>
+            <p></p>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Expiração</mat-label>
+                <input type="text" matInput placeholder="12/22" formControlName="expirationCard">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>CVV</mat-label>
+                <input type="number" matInput placeholder="123" formControlName="cvv">
+            </mat-form-field>
+            <p></p>
+            <button color="primary" (click)="ask()" mat-button>Finalizar compra</button>    
+        </form>
+
+        <p></p>
+       
+        <button mat-button matStepperPrevious>Voltar</button>
+        
+
+    </mat-step>
+</mat-stepper>

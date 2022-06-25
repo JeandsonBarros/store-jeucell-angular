@@ -1,0 +1,10 @@
+<mat-card class="card" [class.available]="product.status=='Indisponível'">
+    <img mat-card-image width="700" height="250" [src]="product.imgUrl">
+    <mat-card-content>
+        <p>
+            {{product.name}}
+            <mat-card-subtitle *ngIf="product.status=='Indisponível'" style="color: brown;">Indisponível</mat-card-subtitle>
+        </p>
+        <mat-card-title> {{product.price | currency: 'BRL'}}</mat-card-title>
+    </mat-card-content>
+</mat-card>

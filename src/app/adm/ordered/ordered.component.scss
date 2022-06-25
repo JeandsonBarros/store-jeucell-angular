@@ -1,0 +1,95 @@
+table {
+  width: 100%;
+  margin-top: 50px;
+ 
+  
+}
+
+  .container{
+    padding: 19px;
+    min-height: 100%;
+
+    .title{
+        font-size: 3rem;
+        font-weight: 300;
+        line-height: 1.2;
+    }
+   
+  }
+
+  .title{
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+ 
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    div{
+      border-style: solid;
+      border-width: thin;
+      padding: 1%;
+      
+    }
+    
+  }
+  
+  .example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }
+  
+  .searchOrdered{
+    display: grid;
+    position: absolute;
+    right: 30px;
+   
+  }
+
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+  .example-element-description {
+    padding: 16px;
+  }
+  
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }
+  
+  mat-grid-tile{
+    background-color: aqua;
+  }
+
+  .elevationCard {
+    box-shadow: 7px 7px 14px #bec6c8,
+      -7px -7px 14px #fcffff;
+    border-radius: 15px;
+  }

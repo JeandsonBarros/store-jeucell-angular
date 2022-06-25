@@ -1,0 +1,23 @@
+<mat-progress-bar *ngIf="!progressBar" mode="indeterminate"></mat-progress-bar>
+<div class="home">
+
+    <mat-card class="cardTitle">
+      <mat-card-title class="title">{{title}}</mat-card-title>
+    </mat-card>
+  
+    <div class="categorys mat-elevation-z8">
+      <div *ngFor="let product of products">
+        <a [routerLink]="['/products/viewproduct/', product.id]">
+          <app-product-card [product]="product"></app-product-card>
+        </a>     
+      </div>
+    </div>
+  
+    <mat-paginator [length]="totalElements" 
+      style="font-size: 20px;"
+      [pageSize]="size" 
+      showFirstLastButtons 
+      (page)="pageController($event)"
+      aria-label="Select page">
+    </mat-paginator>
+</div>

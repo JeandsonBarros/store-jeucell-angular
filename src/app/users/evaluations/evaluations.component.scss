@@ -1,0 +1,22 @@
+button{
+    margin: 0 10px 0 10px;
+}
+
+.nameProduct{
+    width: 190px;
+    max-width: 190px;
+    /* Tamanho */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+
+@media only screen and (max-width: 800px) {
+ 
+    .stars {
+      visibility: hidden;
+      font-size: 0;
+    }
+   
+  }

@@ -1,0 +1,108 @@
+<mat-toolbar-row *ngIf="asUser">
+    
+    <button mat-icon-button class="example-icon" (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+        Categorias
+    </button>
+
+    <span class="example-spacer"></span>
+    <button mat-icon-button id="search"  aria-label="Example icon-button with share icon">
+        <mat-icon (click)=" searchVisible()"> {{ openAndClose }} </mat-icon>
+    </button>
+
+
+    <button mat-icon-button (click)="getFvorites()" [matMenuTriggerFor]="favorites" class="example-icon favorite-icon">
+        <mat-icon>favorite</mat-icon>
+    </button>
+
+    <mat-menu #favorites>
+        <mat-list>
+            <h3 style="font-size: 20px; padding-left: 15px;">{{favotiresTitle}}</h3>
+            <mat-divider></mat-divider>
+            <div *ngFor="let product of products" id="favoriteList">
+                <a [routerLink]="['/products/viewproduct/', product.id]">
+                    <mat-list-item>
+                        <img mat-card-image width="40" height="40" [src]="product.imgUrl">
+                        <div
+                            style="display:block;text-overflow: ellipsis;width: 200px;overflow: hidden; white-space: nowrap;">
+                            {{product.name}}
+                        </div>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                </a>
+            </div>
+        </mat-list>
+    </mat-menu>
+
+
+    <button [routerLink]="['/cart']" mat-icon-button class="example-icon"
+        aria-label="Example icon-button with share icon">
+        <mat-icon>shopping_cart</mat-icon>
+    </button>
+    
+</mat-toolbar-row>
+
+
+
+<mat-sidenav-container class="container" color="primary">
+
+    <mat-sidenav #sidenav mode="side" class="sidenav" mode="side" fixedTopGap="0" fixedInViewport="true">
+
+        <button mat-icon-button class="example-icon" class="close" (click)="sidenav.toggle()">
+            <span> Categorias</span>
+            <mat-icon class="spanclose">close</mat-icon>
+        </button>
+        <mat-nav-list>
+
+            <a (click)="sidenav.toggle()" mat-list-item routerLink="/products/">
+                <mat-icon>home</mat-icon>Início
+            </a>
+        </mat-nav-list>
+        <mat-nav-list>
+            <a (click)="sidenav.toggle()" mat-list-item routerLink="/products/category/Smartphones">
+                Smartphones
+            </a>
+        </mat-nav-list>
+        <mat-nav-list>
+            <a (click)="sidenav.toggle()" mat-list-item routerLink="/products/category/Acessórios-para-smartphones">
+                Acessórios para smartphones
+            </a>
+        </mat-nav-list>
+        <mat-nav-list>
+            <a (click)="sidenav.toggle()" mat-list-item routerLink="/products/category/Perifericos-para-computador">
+                Perifericos para computador
+            </a>
+        </mat-nav-list>
+        <mat-nav-list>
+            <a (click)="sidenav.toggle()" mat-list-item routerLink="/products/category/Aparelhos-de-som">
+                Aparelhos de som
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+
+</mat-sidenav-container>
+<mat-form-field class="example-full-width" *ngIf="visible" appearance="fill">
+    <mat-label>Buscar produto</mat-label>
+    <input type="search" [(ngModel)]="search" (keyup)="fastSearch()" [matAutocomplete]="auto" matInput
+        placeholder="Nome do produto">
+
+
+    <mat-icon (click)="searchForName()" matSuffix>
+        search
+    </mat-icon>
+    <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of products" [value]="option.name"
+            [routerLink]="['/products/viewproduct/' + option.id]">
+            <img style="float: left;" mat-card-image width="50" height="50" [src]="option.imgUrl">
+            {{option.name}}
+        </mat-option>
+        <button mat-stroked-button (click)="searchForName()" style="width: 100%;">
+            <mat-icon matSuffix style="color: rgba(0, 0, 0, 0.486);">
+                add
+            </mat-icon>
+        </button>
+    </mat-autocomplete>
+    
+</mat-form-field>
+

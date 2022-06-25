@@ -1,0 +1,40 @@
+$colorPrimary: #0d48a118;
+
+*{
+  text-decoration: none;
+}
+
+.container { 
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  div{
+    width: 300px;
+  }
+
+  span{
+    text-align: center;
+    font-size: 20px;
+    color: black;
+  }
+
+  }
+
+  mat-form-field{
+    margin-left: 8px;
+  }
+
+  .long{
+    width: 25rem;
+  }
+
+  button{
+    background-color: $colorPrimary;
+    margin: 5px;
+  }
+
+  mat-stepper{
+    min-height: 100%;
+  }

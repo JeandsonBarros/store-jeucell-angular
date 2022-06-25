@@ -1,0 +1,36 @@
+
+<div class="container">
+    <mat-card class="example-card" [class.mat-elevation-z8]="true">
+        <mat-icon color="primary" class="iconLogin">account_circle</mat-icon>
+        <div class="formDiv">
+            <form [formGroup]="login">
+            <p></p>
+            <span>Login</span>
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Seu email aqui" name="username" formControlName="email">
+            </mat-form-field>
+
+            <p></p>
+            <mat-form-field>
+                <mat-label>Senha</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" name="password"  formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon style="font-size: 25px;">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+               <mat-hint style="font-size: 12px;"> 
+                  <a id="changePassword" routerLink="/user/change-password">Esqueceu?</a> 
+                </mat-hint>
+            </mat-form-field>
+            
+            <button (click)="logar()" mat-raised-button color="primary">Entrar</button>
+            <hr >
+            <button [routerLink]="['/user/register']" mat-raised-button color="primary" >Cadastrar-se</button>
+        </form>
+        </div>
+
+
+    </mat-card>
+
+</div>

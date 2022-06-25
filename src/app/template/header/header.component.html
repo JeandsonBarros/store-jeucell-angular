@@ -1,0 +1,78 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+
+<div class="alert" *ngIf="isAlert">
+  <div>Essa loja foi desenvolvida para fins de <i>portfólio</i>,
+    por tanto não é uma loja verdadeira.
+  </div>
+  <div>
+    <button mat-icon-button (click)="isAlert = false">
+      <mat-icon>closed</mat-icon>
+    </button>
+  </div>
+</div>
+<mat-toolbar color="primary">
+
+  <mat-toolbar-row [class.mat-elevation-z8]="true">
+
+    <!--<img src="/assets/img/logo.png" width="90" height="90"-->
+    <div>
+      <a routerLink="/" class="title"> JeuCell </a>
+    </div>
+
+    <div *ngIf="asUser">
+      <mat-form-field class="warapper" appearance="legacy">
+
+        <mat-label>Buscar produto</mat-label>
+
+        <input type="search" [(ngModel)]="search" [matAutocomplete]="auto" (keyup)="fastSearch()" matInput
+          placeholder="Nome do produto">
+
+        <mat-icon matSuffix (click)="searchForName()"> search</mat-icon>
+
+        <mat-autocomplete #auto="matAutocomplete">
+
+          <mat-option *ngFor="let option of products" [value]="option.name"
+            [routerLink]="['/products/viewproduct/' + option.id]">
+            <img style="float: left;" mat-card-image width="50" height="50" [src]="option.imgUrl">
+            {{option.name}}
+          </mat-option>
+
+          <button mat-stroked-button (click)="searchForName()" style="width: 100%;">
+            <mat-icon matSuffix style="color: rgba(0, 0, 0, 0.486);">
+              add
+            </mat-icon>
+          </button>
+
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="asUser">
+      <button (click)="auth()" *ngIf="!menuIcon" mat-button>
+        <span id="auth"> Entrar ou cadastre-se </span>
+        <mat-icon>account_circle</mat-icon>
+      </button>
+
+      <button *ngIf="menuIcon" mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="['/user/data']">
+          <mat-icon>manage_accounts</mat-icon>
+          <span>Conta</span>
+        </button>
+        <button [routerLink]="['/user/requests']" mat-menu-item>
+          <mat-icon>list_alt</mat-icon>
+          <span>Pedidos</span>
+        </button>
+
+        <button (click)="auth()" mat-menu-item>
+          <mat-icon>logout</mat-icon>
+          <span>Sair</span>
+        </button>
+      </mat-menu>
+    </div>
+
+  </mat-toolbar-row>
+
+</mat-toolbar>

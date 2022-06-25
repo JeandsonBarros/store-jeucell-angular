@@ -1,0 +1,60 @@
+<mat-expansion-panel class="mat-elevation-z8">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            <span class="nameProduct">{{product.name}}</span>
+        </mat-panel-title>
+        <mat-panel-description>
+
+            <div>
+                <mat-icon class="stars" color="accent" *ngFor="let star of starsOfProducts">{{star}}</mat-icon>
+            </div>
+
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div>
+        <div *ngIf="isEvaluated" id="editEvaluation">
+
+            <mat-icon (click)="starsSafe(i)" color="accent" *ngFor="let star of starsOfProducts; index as i">{{star}}
+            </mat-icon>
+
+            <p></p>
+
+            <mat-form-field style="width: 300px;">
+                <mat-label style="font-size: 20px;">Comentário</mat-label>
+                <textarea [(ngModel)]="evaluation.comment" matInput placeholder="Deixe seu comentário aqui"></textarea>
+                <mat-hint>{{evaluation.comment.length}}/255</mat-hint>
+            </mat-form-field>
+
+            <p></p>
+
+            <button (click)="edit()" mat-raised-button color="accent">Salvar</button>
+
+            <button (click)="delete()" color="warn" mat-raised-button> 
+                Remover
+                <mat-icon matSuffix>
+                    delete
+                </mat-icon>
+            </button>
+        </div>
+
+        <div *ngIf="!isEvaluated" id="saveEvaluation">
+
+            <mat-icon (click)="starsSafe(i)" color="accent" *ngFor="let star of starsOfProducts; index as i">{{star}}
+            </mat-icon>
+
+            <p></p>
+
+            <mat-form-field style="width: 300px;">
+                <mat-label style="font-size: 20px;">Comentário</mat-label>
+                <textarea matInput [(ngModel)]="comment" placeholder="Deixe seu comentário aqui"></textarea>
+                <mat-hint>{{comment.length}}/255</mat-hint>
+            </mat-form-field>
+
+            <p></p>
+
+            <button (click)="save()" mat-raised-button color="accent">Salvar</button>
+        </div>
+
+    </div>
+</mat-expansion-panel>

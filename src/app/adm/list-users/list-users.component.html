@@ -1,0 +1,53 @@
+<app-nav-adm></app-nav-adm>
+<div class="container">
+  <mat-card class="elevationCard">
+    <mat-card-title class="title">{{title}}</mat-card-title>
+  </mat-card>
+
+  <div class="searchUser">
+    <mat-form-field style="width: 16rem;">
+      <mat-label>Buscar usuário por email</mat-label>
+      <input matInput type="search" (keyup)="searchUser($event)">
+    </mat-form-field>
+  </div>
+
+  <div style="overflow-x: auto;">
+    <table mat-table [dataSource]="users" class="mat-elevation-z8">
+
+      <!-- name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <td mat-cell *matCellDef="let user"> {{user.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let user"> {{user.email}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cpf">
+        <th mat-header-cell *matHeaderCellDef> CPF </th>
+        <td mat-cell *matCellDef="let user"> {{user.cpf}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="options">
+        <th mat-header-cell *matHeaderCellDef> Opções </th>
+        <td mat-cell *matCellDef="let user">
+          <button (click)="delete(user.email)" mat-button>
+            <mat-icon color="warn">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <mat-paginator [length]="totalElements" 
+  style="font-size: 20px;"
+  [pageSize]="size" 
+  showFirstLastButtons 
+  (page)="pageController($event)"
+  aria-label="Select page">
+</mat-paginator>
+</div>

@@ -1,0 +1,138 @@
+<app-nav-adm></app-nav-adm>
+
+<div class="container">
+
+  <mat-card class="elevationCard">
+    <mat-card-title class="title">Lista de pedidos</mat-card-title>
+  </mat-card>
+
+
+  <div class="searchOrdered">
+    <mat-form-field style="width: 16rem;">
+      <mat-label>Buscar por email de cliente</mat-label>
+      <input matInput type="text" [(ngModel)]="idSerch" (keyup)="searchProduct()">
+    </mat-form-field>
+  </div>
+
+
+
+  <div style=" overflow-x: auto; padding: auto;">
+    <table class="mat-elevation-z8" mat-table [dataSource]="ordereds" multiTemplateDataRows>
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Número do pedido </th>
+        <td mat-cell *matCellDef="let ordered"> {{ordered.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nameUser">
+        <th mat-header-cell *matHeaderCellDef> Cliente </th>
+        <td mat-cell *matCellDef="let ordered"> {{ordered.user}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let ordered"> {{ordered.user.email}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let ordered">
+          <mat-form-field appearance="fill">
+            <mat-label>Status</mat-label>
+            <mat-select [(value)]="ordered.status">
+              <mat-option value="Em análise" (click)="statusAlter(ordered.id, 'Em análise')">Em análise</mat-option>
+              <mat-option value="Aprovado" (click)="statusAlter(ordered.id, 'Aprovado')">Aprovado</mat-option>
+              <mat-option value="A caminho" (click)="statusAlter(ordered.id, 'A caminho')">A caminho</mat-option>
+              <mat-option value="Entregue" (click)="statusAlter(ordered.id, 'Entregue')">Entregue</mat-option>
+              <mat-option value="Pagamento recusado" (click)="statusAlter(ordered.id, 'Pagamento recusado')">Pagamento recusado</mat-option>
+              <mat-option value="Produto indisponível" (click)="statusAlter(ordered.id, 'Produto indisponível')">Produto indisponível</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Data </th>
+        <td mat-cell *matCellDef="let ordered"> {{ordered.date}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="option">
+        <th mat-header-cell *matHeaderCellDef> Opção </th>
+        <td mat-cell *matCellDef="let ordered">
+          <button mat-icon-button (click)="deleteOrdered(ordered.id)">
+            <mat-icon color="warn" matSuffix>
+              delete
+            </mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let ordered" [attr.colspan]="columnsToDisplay.length">
+          <div class="example-element-detail" [@detailExpand]="ordered == expandedElement ? 'expanded' : 'collapsed'">
+
+            <div>
+
+            
+               <strong>Produtos:</strong> <br>
+                <span *ngFor="let product of ordered.products" role="listitem">
+                  {{product.product.name}} -
+                  Quantidade: {{product.quantity}} - Disponível: {{product.product.quantity}} <br>
+                </span>
+             
+            </div>
+
+            <div>
+                <strong>Data de realização do pedido: </strong> <br>
+                {{ordered.date}} 
+            </div>
+
+
+            <div>
+
+              <ul style="list-style-type:none;">
+                <li> <strong>Pagamento:</strong> </li>
+                <li> Valor: {{ordered.total | currency: 'BRL'}} </li>
+                <li> Forma de pagamento: Cartão </li>
+                <li> Dividido em: {{ordered.quota}}x </li>
+                <li> Nome no cartão: {{ordered.nameOnCard}} </li>
+                <li> Número do cartão: {{ordered.cardNumber}} </li>
+                <li> Data expiração: {{ordered.expirationCard}} </li>
+                <li> CVV: {{ordered.cvv}} </li>
+              </ul>
+            </div>
+
+            <div>
+
+              <ul style="list-style-type:none;">
+                <li> <strong>Entrega:</strong> </li>
+                <li> Telefone: {{ordered.remitteeNumber}} </li>
+                <li> Estado: {{ordered.state}} </li>
+                <li> Cidade: {{ordered.city}} </li>
+                <li> Rua: {{ordered.street}} </li>
+                <li> Número da casa: {{ordered.numberHouse}} </li>
+                <li> Destinatário: {{ordered.remittee}}</li>
+                <li> Bairro: {{ordered.district}} </li>
+                <li> CEP: {{ordered.cep}} </li>
+              </ul>
+
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+      <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+        [class.example-expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+  </div>
+  <mat-paginator [length]="totalElements" style="font-size: 20px;" [pageSize]="size" showFirstLastButtons
+    (page)="pageController($event)" aria-label="Select page">
+  </mat-paginator>
+
+</div>
